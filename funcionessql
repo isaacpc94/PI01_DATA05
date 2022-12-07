@@ -1,0 +1,38 @@
+import pandas as pd
+import numpy as np
+from fastapi import FastAPI
+import json
+import pymysql
+
+conexion = pymysql.connect(
+   host = 'localhost',
+   user = 'root',
+   passwd = '',
+   db= 'video',
+   port=3307
+)
+
+cursor = conexion.cursor()
+
+def maxduration(anio,plataforma,time):
+    if time=="min":
+        cursor.execute("select d.title,d.release_year,d.Plataforma,d.type,d.duration,convert(SUBSTRING_INDEX(d.duration,' ', 1), UNSIGNED INTEGER) AS durnum from \
+        (select a.IdPlataforma,a.Plataforma,b.duration,c.release_year,c.type,c.title from\
+        idplataforma a join plataforma b on (a.IdPlataforma=b.IdPlataforma)\
+        join video c on (binary b.IdVideo=binary c.IdVideo)\
+        ) d where d.type='Movie' and d.Plataforma='"+str(plataforma)+"' and d.release_year="+str(anio)+ \
+        " order by 6 desc \
+        limit 1")
+    elif time=="season":
+        cursor.execute("select d.title,d.release_year,d.Plataforma,d.type,d.duration,convert(SUBSTRING_INDEX(d.duration,' ', 1), UNSIGNED INTEGER) AS durnum from \
+        (select a.IdPlataforma,a.Plataforma,b.duration,c.release_year,c.type,c.title from\
+        idplataforma a join plataforma b on (a.IdPlataforma=b.IdPlataforma)\
+        join video c on (binary b.IdVideo=binary c.IdVideo)\
+        ) d where d.type='TV Show' and d.Plataforma='"+str(plataforma)+"' and d.release_year="+str(anio)+ \
+        " order by 6 desc \
+        limit 1")
+    else:
+        return "Inserte min o season"
+
+    for i in cursor:
+        return print(i[0])
