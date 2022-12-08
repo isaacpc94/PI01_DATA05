@@ -3,12 +3,13 @@ from funcionessql import maxduration as max
 from funcionessql import cantpys as cant
 from funcionessql import genero as gen
 from funcionessql import actor as act
+from starlette.responses import RedirectResponse
 app = FastAPI()
 
 
 @app.get("/")
 async def root():
-    return {"message": "Hello Worldado"}
+    return RedirectResponse(url="/docs")
 
 @app.get("/get_max_duration({anio},{plat},{minoseason})")  
 async def maxduration(anio:int,plat:str,minoseason:str):
