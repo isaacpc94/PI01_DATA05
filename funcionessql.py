@@ -4,7 +4,6 @@ from fastapi import FastAPI
 import json
 import pymysql
 
-#uvicorn main:app --reload para iniciar servidor
 
 def conectar_a_base_de_datos() :
     conexion = pymysql.connect(

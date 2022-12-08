@@ -6,7 +6,7 @@ from funcionessql import actor as act
 from starlette.responses import RedirectResponse
 app = FastAPI()
 
-
+#uvicorn main:app --reload para iniciar servidor
 @app.get("/")
 async def root():
     return RedirectResponse(url="/docs")
