@@ -19,7 +19,7 @@ conexion = pymysql.connect(
     host = 'localhost',
     user = 'root',
     passwd = '',
-    db= 'video',
+    db= 'video2',
     port=3307
     )
 
@@ -33,13 +33,15 @@ with open('createdb/video_routines.sql',encoding="utf-8") as myfile:
     cursor.execute(i)
 cursor.close()
 
-with open('createdb/video_idplataforma.sql',encoding="utf-8") as myfile:
+cursor=conexion.cursor()
+with open('createdb/video_idplataformap.sql',encoding="utf-8") as myfile:
   data = myfile.read()
   data=data.split(";")
   for i in data:
     cursor.execute(i)
 cursor.close()
 
+cursor=conexion.cursor()
 with open('createdb/video_cast.sql',encoding="utf-8") as myfile:
   data = myfile.read()
   data=data.split(";")
@@ -47,6 +49,7 @@ with open('createdb/video_cast.sql',encoding="utf-8") as myfile:
     cursor.execute(i)
 cursor.close()
 
+cursor=conexion.cursor()
 with open('createdb/video_listed.sql',encoding="utf-8") as myfile:
   data = myfile.read()
   data=data.split(";")
@@ -54,6 +57,7 @@ with open('createdb/video_listed.sql',encoding="utf-8") as myfile:
     cursor.execute(i)
 cursor.close()
 
+cursor=conexion.cursor()
 with open('createdb/video_plataforma.sql',encoding="utf-8") as myfile:
   data = myfile.read()
   data=data.split(";")
@@ -61,6 +65,7 @@ with open('createdb/video_plataforma.sql',encoding="utf-8") as myfile:
     cursor.execute(i)
 cursor.close()
 
+cursor=conexion.cursor()
 with open('createdb/video_video.sql',encoding="utf-8") as myfile:
   data = myfile.read()
   data=data.split(";")
