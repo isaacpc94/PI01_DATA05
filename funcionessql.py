@@ -26,8 +26,8 @@ def maxduration(anio,plataforma,time):
         (select a.IdPlataforma,a.Plataforma,b.duration,c.release_year,c.type,c.title from\
         idplataforma a join plataforma b on (a.IdPlataforma=b.IdPlataforma)\
         join video c on (binary b.IdVideo=binary c.IdVideo)\
-        ) d where d.type='Movie' and d.Plataforma='"+plataforma+"' and d.release_year="+anio+ \
-        " order by 6 desc \
+        ) d where d.type='Movie' and d.Plataforma='"+plataforma+"' and d.release_year="+anio+" \
+        order by 6 desc \
         limit 1"
         cursor.execute(query)
     elif time=="season":
@@ -35,8 +35,8 @@ def maxduration(anio,plataforma,time):
         (select a.IdPlataforma,a.Plataforma,b.duration,c.release_year,c.type,c.title from\
         idplataforma a join plataforma b on (a.IdPlataforma=b.IdPlataforma)\
         join video c on (binary b.IdVideo=binary c.IdVideo)\
-        ) d where d.type='TV Show' and d.Plataforma='"+plataforma+"' and d.release_year="+anio+ \
-        " order by 6 desc \
+        ) d where d.type='TV Show' and d.Plataforma='"+plataforma+"' and d.release_year="+anio+" \
+        order by 6 desc \
         limit 1"
         cursor.execute(query)
     else:
